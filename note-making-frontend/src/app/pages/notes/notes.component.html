@@ -1,0 +1,36 @@
+<app-header (openCreateModal)="openCreateModal()"></app-header>
+
+<div class="mt-[100px]">
+  <div class="flex justify-center mt-6 mb-4">
+    <input
+      type="text"
+      placeholder="Search your notes..."
+      [(ngModel)]="searchKeyword"
+      (input)="onSearchInput(searchKeyword)"
+      class="w-96 px-4 py-2 rounded-xl bg-gray-200 border border-white/20 text-black placeholder-gray-800
+            focus:outline-none focus:ring-2 focus:ring-blue-500/50"
+    />
+    <button
+      (click)="onSearch()"
+      class="ml-3 bg-blue-600/70 hover:bg-blue-700/80 text-white px-5 py-2 rounded-xl font-semibold shadow-md
+            hover:shadow-blue-500/40 border border-white/20 backdrop-blur-md transition-all duration-300 active:scale-95 cursor-pointer"
+    >
+      Search
+    </button>
+  </div>
+</div>
+
+<app-note-list 
+  [notes]="notes"
+  (delete)="deleteNote($event)"
+  (edit)="openEditModal($event)"
+  (toggle)="toggleNoteStatus($event)">
+</app-note-list>
+
+<app-note-form-modal 
+  *ngIf="showModal"
+  [note]="selectedNote"
+  [isEdit]="isEdit"
+  (close)="closeModal()"
+  (submit)="submitNote($event)">
+</app-note-form-modal>

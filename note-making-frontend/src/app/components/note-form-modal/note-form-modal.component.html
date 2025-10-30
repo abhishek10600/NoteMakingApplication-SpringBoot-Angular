@@ -1,0 +1,67 @@
+<!-- <div class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+  <div class="bg-white p-6 rounded-lg w-96">
+    <h2 class="text-xl font-bold mb-4">{{ isEdit ? 'Update Note' : 'Create New Note' }}</h2>
+
+    <form (ngSubmit)="onSubmit()" #noteForm="ngForm">
+      <input type="text" placeholder="Title" [(ngModel)]="note.noteTitle" name="title" required class="border p-2 w-full mb-2 rounded" />
+      <textarea placeholder="Description" [(ngModel)]="note.noteDescription" name="desc" required class="border p-2 w-full mb-2 rounded"></textarea>
+      <input type="text" placeholder="Tag (optional)" [(ngModel)]="note.tag" name="tag" class="border p-2 w-full mb-2 rounded" />
+
+      <div class="flex justify-end gap-2">
+        <button type="button" (click)="onClose()" class="px-4 py-2 bg-gray-300 rounded">Cancel</button>
+        <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded">{{ isEdit ? 'Update' : 'Create' }}</button>
+      </div>
+    </form>
+  </div>
+</div> -->
+
+<div class="fixed inset-0 backdrop-blur-md bg-black/70 flex justify-center items-center">
+  <div class="bg-white/20 backdrop-blur-xl border border-white/30 shadow-lg p-6 rounded-2xl w-96 text-white">
+    <h2 class="text-xl font-bold mb-4 text-center">
+      {{ isEdit ? 'Update Note' : 'Create New Note' }}
+    </h2>
+
+    <form (ngSubmit)="onSubmit()" #noteForm="ngForm" class="space-y-3">
+      <input
+        type="text"
+        placeholder="Title"
+        [(ngModel)]="note.noteTitle"
+        name="title"
+        required
+        class="border border-white/30 bg-white/10 text-white placeholder-gray-300 p-2 w-full rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+      />
+
+      <textarea
+        placeholder="Description"
+        [(ngModel)]="note.noteDescription"
+        name="desc"
+        required
+        class="border border-white/30 bg-white/10 text-white placeholder-gray-300 p-2 w-full rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+      ></textarea>
+
+      <input
+        type="text"
+        placeholder="Tag (optional)"
+        [(ngModel)]="note.tag"
+        name="tag"
+        class="border border-white/30 bg-white/10 text-white placeholder-gray-300 p-2 w-full rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+      />
+
+      <div class="flex justify-end gap-2 pt-2">
+        <button
+          type="button"
+          (click)="onClose()"
+          class="px-4 py-2 bg-gray-500/40 hover:bg-gray-600/50 rounded text-white cursor-pointer"
+        >
+          Cancel
+        </button>
+        <button
+          type="submit"
+          class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded cursor-pointer"
+        >
+          {{ isEdit ? 'Update' : 'Create' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

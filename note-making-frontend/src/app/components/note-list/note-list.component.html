@@ -1,0 +1,11 @@
+
+<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
+    
+    <app-note-item
+    *ngFor="let note of notes"
+    [note]="note"
+    (delete)="deleteNote($event)"
+    (edit)="editNote($event)"
+    (toggle)="toggleStatus($event)"
+    ></app-note-item>
+</div>
