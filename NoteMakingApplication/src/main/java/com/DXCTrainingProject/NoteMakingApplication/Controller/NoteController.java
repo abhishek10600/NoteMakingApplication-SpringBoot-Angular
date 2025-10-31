@@ -30,6 +30,12 @@ public class NoteController {
         return new ResponseEntity<>(notesResponseDTO, HttpStatus.OK);
     }
 
+    @GetMapping("/my-notes")
+    public ResponseEntity<List<NoteResponseDTO>> getAllNotesOfUser(){
+        List<NoteResponseDTO> notes = noteService.getAllNotesOfUser();
+        return new ResponseEntity<>(notes, HttpStatus.OK);
+    }
+
     @GetMapping("/search")
     public ResponseEntity<List<NoteResponseDTO>> searchNotes(@RequestParam String keyword){
         List<NoteResponseDTO> searchResults = noteService.searchNotes(keyword);

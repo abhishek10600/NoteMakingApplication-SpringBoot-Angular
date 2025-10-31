@@ -14,6 +14,10 @@ export class NoteService {
         return this.http.get<Note[]>(this.baseUrl);
     }
 
+    getMyNotes(): Observable<Note[]> {
+        return this.http.get<Note[]>(`${this.baseUrl}/my-notes`);
+    }
+
     createNote(note: Note): Observable<Note>{
         return this.http.post<Note>(this.baseUrl, note);
     }

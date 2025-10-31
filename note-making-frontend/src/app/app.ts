@@ -1,10 +1,11 @@
 import { Component, signal } from '@angular/core';
 import { NotesComponent } from './pages/notes/notes.component';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [NotesComponent],
+  imports: [RouterOutlet],
   templateUrl: './app.html',
   styleUrls: ['./app.css']
 })

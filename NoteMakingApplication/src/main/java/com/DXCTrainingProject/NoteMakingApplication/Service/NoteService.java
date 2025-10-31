@@ -13,4 +13,5 @@ public interface NoteService {
     NoteResponseDTO updateNoteStatus(Long noteId);
     String deleteNote(Long noteId);
     List<NoteResponseDTO> searchNotes(String keyword);
+    List<NoteResponseDTO> getAllNotesOfUser();
 }

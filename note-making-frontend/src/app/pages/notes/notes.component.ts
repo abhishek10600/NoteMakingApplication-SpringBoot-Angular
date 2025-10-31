@@ -40,7 +40,7 @@ export class NotesComponent implements OnInit {
   }
 
   fetchNotes() {
-    this.noteService.getAllNotes().subscribe((data) => (this.notes = data));
+    this.noteService.getMyNotes().subscribe((data) => (this.notes = data));
   }
 
   onSearch(){
