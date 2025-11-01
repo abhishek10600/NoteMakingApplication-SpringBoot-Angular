@@ -13,7 +13,7 @@ export class AdminDashboardComponent implements OnInit {
   users: any[] = [];
   notes: any[] = [];
   nonAdminUsers: any[] = [];
-  activeTab: 'users' | 'notes' = 'users'; 
+  activeTab: 'users' | 'notes' = 'notes'; 
 
   constructor(
     private adminService: AdminService,
@@ -25,17 +25,13 @@ export class AdminDashboardComponent implements OnInit {
     this.loadNotes();
   }
 
-//   get nonAdminUsers() {
-//     return this.users.filter(u => u.roles !== 'ROLE_ADMIN');
-//   }
-
   loadUsers() {
     this.adminService.getAllUsers().subscribe({
       next: (res) => {
         this.users = res;
         this.nonAdminUsers = this.users.filter(
           (u) => u.roles !== 'ROLE_ADMIN'
-        ); // ✅ filter here
+        );
       },
       error: (err) => console.error('Error loading users:', err),
     });
