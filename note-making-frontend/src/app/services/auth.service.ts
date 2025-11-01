@@ -9,7 +9,7 @@ export class AuthService {
   constructor(private http: HttpClient, private router: Router) {}
 
   login(username: string, password: string) {
-    return this.http.post<{ token: string }>(`${this.apiUrl}/login`, { username, password });
+    return this.http.post<{ token: string; roles: string }>(`${this.apiUrl}/login`, { username, password });
   }
 
   register(username: string, password: string) {
@@ -18,6 +18,15 @@ export class AuthService {
 
   saveToken(token: string) {
     localStorage.setItem('token', token);
+  }
+
+  saveAuthData(token:string, roles:string){
+    localStorage.setItem('token', token);
+    localStorage.setItem('roles', roles);
+  }
+
+  getRoles(){
+    return localStorage.getItem('roles');
   }
 
   logout() {

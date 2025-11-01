@@ -1,6 +1,5 @@
 package com.DXCTrainingProject.NoteMakingApplication.DTO;
 
-import com.DXCTrainingProject.NoteMakingApplication.Entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,7 +9,7 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class NoteResponseDTO {
+public class AdminNoteResponseDTO {
 
     private Long id;
     private String noteTitle;
@@ -19,4 +18,5 @@ public class NoteResponseDTO {
     private Boolean isCompleted;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+    private UserResponseDTO user;
 }

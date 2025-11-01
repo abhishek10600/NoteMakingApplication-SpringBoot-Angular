@@ -1,0 +1,93 @@
+<div class="min-h-screen bg-gray-100 flex">
+  <!-- Sidebar -->
+  <aside class="w-64 bg-white shadow-lg p-6">
+    <h2 class="text-2xl font-bold mb-8 text-center">Admin Panel</h2>
+    <nav class="space-y-3">
+      <button
+        (click)="activeTab = 'notes'"
+        [class.bg-green-600]="activeTab === 'notes'"
+        [class.text-white]="activeTab === 'notes'"
+        [class.text-gray-700]="activeTab !== 'notes'"
+        class="w-full text-left px-4 py-2 rounded-lg font-medium bg-gray-200 hover:bg-gray-400 hover:text-white transition cursor-pointer"
+      >
+        Notes
+      </button>
+      <button
+        (click)="activeTab = 'users'"
+        [class.bg-green-600]="activeTab === 'users'"
+        [class.text-white]="activeTab === 'users'"
+        [class.text-gray-700]="activeTab !== 'users'"
+        class="w-full text-left px-4 py-2 rounded-lg font-medium bg-gray-200 hover:bg-gray-400 hover:text-white transition cursor-pointer"
+      >
+        Users
+      </button>
+
+      <button
+        (click)="logout()"
+        class="w-full text-left px-4 py-2 rounded-lg font-medium text-white bg-red-600 hover:bg-red-900 mt-8 transition cursor-pointer"
+      >
+        Logout
+      </button>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="flex-1 p-8">
+    <h1 class="text-3xl font-bold mb-6">Admin Dashboard</h1>
+
+    <!-- USERS TAB -->
+    <div *ngIf="activeTab === 'users'">
+      <h2 class="text-2xl font-semibold mb-4">All Users</h2>
+
+      <ng-container *ngIf="nonAdminUsers && nonAdminUsers.length > 0; else noUsers">
+        <div
+          *ngFor="let user of nonAdminUsers"
+          class="bg-white rounded-lg p-4 mb-3 shadow flex justify-between items-center"
+        >
+          <div>
+            <p class="font-medium">Username: {{ user.username }}</p>
+            <p class="text-sm text-gray-500">Role: {{ user.roles }}</p>
+          </div>
+          <button
+            (click)="deleteUser(user.id)"
+            class="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700"
+          >
+            Delete
+          </button>
+        </div>
+      </ng-container>
+
+      <ng-template #noUsers>
+        <p class="text-gray-500 text-center mt-4">No regular users found.</p>
+      </ng-template>
+    </div>
+
+    <!-- NOTES TAB -->
+    <div *ngIf="activeTab === 'notes'">
+      <h2 class="text-2xl font-semibold mb-4">All Notes</h2>
+
+      <ng-container *ngIf="notes && notes.length > 0; else noNotes">
+        <div
+          *ngFor="let note of notes"
+          class="bg-white rounded-lg p-4 mb-3 shadow flex justify-between items-center"
+        >
+          <div>
+            <p class="font-medium">{{ note.noteTitle }}</p>
+            <p class="text-sm text-gray-500">{{ note.noteDescription }}</p>
+            <p class="text-xs text-gray-400">User: {{ note.user?.username || 'Deleted User' }}</p>
+          </div>
+          <button
+            (click)="deleteNote(note.id)"
+            class="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700"
+          >
+            Delete
+          </button>
+        </div>
+      </ng-container>
+
+      <ng-template #noNotes>
+        <p class="text-gray-500 text-center">No notes available.</p>
+      </ng-template>
+    </div>
+  </main>
+</div>

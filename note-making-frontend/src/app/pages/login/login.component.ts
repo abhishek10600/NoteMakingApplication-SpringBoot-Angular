@@ -19,8 +19,15 @@ export class LoginComponent {
   onLogin() {
     this.authService.login(this.username, this.password).subscribe({
       next: res => {
-        this.authService.saveToken(res.token);
-        this.router.navigate(['/notes']);
+        this.authService.saveAuthData(res.token, res.roles);
+
+        const userRole = res.roles.trim();
+
+        if(userRole === "ROLE_ADMIN"){
+          this.router.navigate(['/admin-dashboard']);
+        }else{
+          this.router.navigate(['/notes']);
+        }
       },
       error: () => alert('Invalid credentials')
     });
